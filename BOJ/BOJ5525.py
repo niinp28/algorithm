@@ -4,15 +4,18 @@ N = int(input())
 M = int(input())
 S = input()
 check = ''
-cnt = 0
+cnt = 0  #OI 갯수
+index = 0
+ans = 0
 
-for idx in range(2*N+1):
-    if idx % 2:
-        check += 'O'
-    else:
-        check += 'I'
-
-for i in range(M):
-    if S[i:i+2*N+1] == check:
+while index < M-1:
+    if S[index: index+3] == 'IOI':
         cnt += 1
-print(cnt)
+        index += 2
+        if cnt == N:  # P1 = 'IOI', P2 = 'IOIOI'이므로 N은 OI의 갯수이다
+            ans += 1
+            cnt -= 1
+    else:
+        index += 1
+        cnt = 0
+print(ans)

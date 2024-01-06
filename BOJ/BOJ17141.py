@@ -20,7 +20,9 @@ def bfs(virus_starts, visited):
                     visited[nr][nc] = visited[a][b] + 1
     for row in visited:
         if 0 in row:
-            return -1
+            return 'False'
+    else:
+        return max(map(max, visited))-1
                 
 def comb(level, start):
     global ans
@@ -28,9 +30,9 @@ def comb(level, start):
         visited = [[0] * N for _ in range(N)]
         for wi, wj in walls:
             visited[wi][wj] = -1
-        print(bfs(rs, visited))
-        pprint(visited)
-        ans = min(bfs(rs, visited), ans)
+        result = bfs(rs, visited)
+        ans.append(result)
+        
     else:
         for i in range(start, len(virus_start)):
             rs[level] = virus_start[i]
@@ -47,7 +49,7 @@ arr = [list(map(int, input().split())) for _ in range(N)]
 virus_start = []
 walls = []
 rs = [0] * M
-ans = 1000
+ans = []
 for i in range(N):
     for j in range(N):
         if arr[i][j] == 2:
@@ -55,4 +57,17 @@ for i in range(N):
         elif arr[i][j] == 1:
             walls.append((i, j))
 comb(0, 0)
-# print(ans)
+
+flag = False
+mn = 100000
+
+for n in ans:
+    if n != 'False':
+        flag = True
+        tmp = n
+        if tmp < mn:
+            mn = tmp
+if not flag:
+    print(-1)
+else:
+    print(mn)

@@ -15,5 +15,6 @@ for i in range(1, len(children)-1):
         if cnt > mx:
             mx = cnt
     else:
+        mx = max(mx, cnt)
         cnt = 1
-print(n-mx)
+print(n-mx if n != 1 else 0)

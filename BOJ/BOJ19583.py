@@ -1,5 +1,4 @@
 
-graph = {}
 s, e, q = input().split()
 cnt = 0
 present = set()
@@ -8,7 +7,7 @@ while True:
         time, name = input().split()
         if int(time[:2] + time[3:]) <= int(s[:2] + s[3:]):
             present.add(name)
-        elif int(e[:2]+e[3:]) <= time <= int(q[:2]+q[3:]) and name in present:
+        elif int(e[:2]+e[3:]) <= int(time[:2] + time[3:]) <= int(q[:2]+q[3:]) and name in present:
             present.remove(name)
             cnt += 1
     except:

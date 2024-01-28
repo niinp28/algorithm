@@ -3,7 +3,6 @@
 N, M = map(int, input().split())
 arr = [list(map(int, input().split())) for _ in range(N)]
 dp = [[[0,0,0]  for _ in range(M)] for _ in range(N)]
-ans = 1e9
 
 for i in range(N):
     if not i:
@@ -24,6 +23,13 @@ for i in range(N):
                 dp[i][j][1] = arr[i][j] + min(dp[i-1][j][0], dp[i-1][j][2])
                 dp[i][j][2] = arr[i][j] + min(dp[i-1][j-1][0], dp[i-1][j-1][1])
 
-for i in range(M):
-    ans = min(min(dp[N-1][i]), ans)
+ans = 1e9
+for x in range(M):
+    if x == 0:
+        ans = min(ans, min(dp[N-1][x][:2]))
+    elif x == M-1:
+        ans = min(ans, min(dp[N-1][x][1:]))
+    else:
+        ans = min(ans, min(dp[N-1][x]))
+        
 print(ans)

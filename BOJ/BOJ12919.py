@@ -10,7 +10,7 @@ def recur(word):
         word.pop()
         recur(word)
         word.append('A')
-    if word[-1] == 'B':
+    if word[0] == 'B':
         word.reverse()
         word.pop()
         recur(word)
@@ -18,8 +18,8 @@ def recur(word):
         word.reverse()
     
 
-S = input()
-T = input()
+S = list(input())
+T = list(input())
 res = 0
 recur(T)
 print(res)

@@ -1,24 +1,25 @@
 # a와 b 2
 def recur(word):
-    global flag
-    if len(word) == len(T):
-        if word == T:
-            flag = True
+    global res
+    if len(word) == len(S):
+        if word == S:
+            res = 1
             return
-    else:
-        word1 = word + 'A'
-        recur(word1)
-        word2 = word + 'B'
-        word3 = word2[::-1]
-        recur(word3)
+        return
+    if word[-1] == 'A':
+        word.pop()
+        recur(word)
+        word.append('A')
+    if word[-1] == 'B':
+        word.reverse()
+        word.pop()
+        recur(word)
+        word.append('B')
+        word.reverse()
     
 
 S = input()
 T = input()
-flag = False
-recur(S)
-
-if flag:
-    print(1)
-else:
-    print(0)
+res = 0
+recur(T)
+print(res)

@@ -2,11 +2,16 @@
 
 st = input()
 bomb = input()
+stack = []
+bomb_len = len(bomb)
 
-while bomb in st:
-    st = st.replace(bomb, '')
+for i in range(len(st)):
+    stack.append(st[i])
+    if ''.join(stack[-bomb_len:]) == bomb:
+        for _ in range(bomb_len):
+            stack.pop()
 
-if st:
-    print(st)
+if stack:
+    print(''.join(stack))
 else:
     print('FRULA')

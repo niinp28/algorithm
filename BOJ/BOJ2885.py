@@ -1,16 +1,25 @@
-# 문서검색
+# 초콜릿 식사
 
-a = input()
-b = input()
-i = 0
-cnt = 0
+k = int(input())
+n = 0
 while True:
-    if len(a[i:i+len(b)]) == len(b):
-        if a[i:i+len(b)] == b:
-            cnt += 1
-            i += len(b)
-        else:
-            i += 1
-    else:
+    if k <= 2 ** n:
         break
-print(cnt)
+    n += 1
+ans = 2 ** n
+
+if k == 2 ** n:
+    print(k, 0)
+else:
+    n -= 1
+    cut = 1
+    while k != 0:
+        
+        if k >= 2 ** n:
+            k -= 2 ** n
+            
+        else:
+            n -= 1
+            cut += 1
+
+    print(ans, cut)

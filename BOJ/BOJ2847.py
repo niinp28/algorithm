@@ -1,12 +1,13 @@
 # 게임을 만든 동준이
-N = int(input())
-levels = []
-for _ in range(N):
-    levels.append(int(input()))
-cnt = 0
-for i in range(N-1, 0, -1):
-    if levels[i] <= levels[i-1]:
-        cnt += (levels[i-1] - levels[i] + 1)
-        levels[i-1] = levels[i] - 1
+n = int(input())
+score = []
+for i in range(n):
+    score.append(int(input()))
 
-print(cnt)    
+count = 0
+for i in range(n-2, -1, -1):
+    if score[i] >= score[i+1]:
+        count += score[i] - score[i+1] + 1
+        score[i] = score[i+1]-1
+
+print(count)
